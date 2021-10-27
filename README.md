@@ -15,5 +15,6 @@ The main goal of this project - systematize knowledge of Java Core, VCS (waiting
 
 ## 👨‍💻Technologies
 
-* Java
+* Java Core
 * Git
+* JUnit
