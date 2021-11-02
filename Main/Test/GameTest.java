@@ -21,4 +21,24 @@ class GameTest {
         assertTrue(carl.isAlive());
         assertFalse(dave.isAlive());
     }
+
+    @Test
+    void addUnits() {
+        var army1 = new Army();
+        var army2 = new Army();
+        army1.addUnits(10, 1);
+        army2.addUnits(10, 2);
+        assertEquals(10, army1.getArmyList().size());
+        assertEquals(10, army2.getArmyList().size());
+        for (Warrior warrior : army1.getArmyList()) {
+            assertNotNull(warrior);
+        }
+        for (Warrior warrior : army2.getArmyList()) {
+            assertNotNull(warrior);
+        }
+        boolean res = Battle.fight(army1.getArmyList(), army2.getArmyList());
+        assertFalse(res);
+        res = Battle.fight(army2.getArmyList(),army1.getArmyList());
+        assertTrue(res);
+    }
 }
