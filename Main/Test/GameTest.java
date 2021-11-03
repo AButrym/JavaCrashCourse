@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 
+import javax.swing.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameTest {
@@ -38,7 +40,35 @@ class GameTest {
         }
         boolean res = Battle.fight(army1.getArmyList(), army2.getArmyList());
         assertFalse(res);
-        res = Battle.fight(army2.getArmyList(),army1.getArmyList());
+        res = Battle.fight(army2.getArmyList(), army1.getArmyList());
         assertTrue(res);
+    }
+
+    @Test
+    void fightDefender() {
+        class Dave extends Warrior {
+            public Dave() {
+                super(60, 2);
+            }
+        }
+        var chuck = new Warrior();
+        var bob = new Defender();
+        var tom = new Defender();
+        var tod = new Defender();
+        var mike = new Knight();
+        var dave = new Dave();
+
+        var result1 = Game.fight(chuck, bob);
+        var result2 = Game.fight(tom, mike);
+        var result3 = Game.fight(tod, dave);
+
+        assertFalse(result1, "Bob should have won");
+        assertFalse(result2, "Mike should have  won");
+        assertTrue(result3, "Tod should have won");
+
+        assertFalse(chuck.isAlive());
+        assertTrue(bob.isAlive());
+        assertTrue(tod.isAlive());
+        assertEquals(60, tod.getHealth());
     }
 }

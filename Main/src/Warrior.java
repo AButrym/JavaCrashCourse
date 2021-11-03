@@ -23,6 +23,15 @@ public class Warrior {
         return attack;
     }
 
+    public void attack(Defender warriorDefender) {
+        if (this.attack > warriorDefender.defence)
+        {
+            warriorDefender.health = warriorDefender.health - (this.attack - warriorDefender.defence);
+            if (!warriorDefender.isAlive())
+                warriorDefender.health = 0;
+        }
+    }
+
     public void attack(Warrior warriorDefender) {
         warriorDefender.health = warriorDefender.health - this.attack;
         if (!warriorDefender.isAlive())
