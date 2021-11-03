@@ -3,9 +3,9 @@ package com;
 class WarGame {
     public static boolean fight(Warrior w1, Warrior w2) {
         while(w1.isAlive() && w2.isAlive()){
-            w2.health=w2.getHealth() - w1.getAttack();
+            w2.health=w2.getHealth() - (w1.getAttack()-w2.getDefense());
             if(w2.isAlive())
-                w1.health=w1.getHealth() - w2.getAttack();
+                w1.health=w1.getHealth() - (w2.getAttack()- w1.getDefense());
             else
                 return true;
         }
@@ -16,7 +16,7 @@ class WarGame {
 class Warrior {
     protected int health;
     protected int attack;
-
+    protected int defense=0;
     public Warrior() {
         this(50, 5);
     }
@@ -36,6 +36,10 @@ class Warrior {
 
     public int getAttack() {
         return attack;
+    }
+
+    public int getDefense() {
+        return defense;
     }
 }
 

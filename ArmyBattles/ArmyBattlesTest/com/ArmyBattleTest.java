@@ -32,4 +32,11 @@ class ArmyBattleTest {
         }
 
     }
+    @Test
+    void fightDefenderVsWarrior(){
+        Defender defender=new Defender();
+        Warrior warrior=new Warrior();
+        assertFalse(WarGame.fight(warrior,defender), "defender should have won");
+        System.out.println("defender`s health point: "+defender.getHealth());
+    }
 }
