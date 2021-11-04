@@ -34,15 +34,6 @@ public class Warrior {
     }
 
     /**
-     * Attack
-     * @param warrior to be attacked
-     * @param attack strength of attack (warrior.health - attack)
-     */
-    void attack(Warrior warrior, int attack){
-        warrior.setHealth(warrior.health - attack);
-    }
-
-    /**
      * Warrior gets damage from another warrior
      * @param warrior - attacking warrior
      */
