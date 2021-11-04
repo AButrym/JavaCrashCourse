@@ -39,4 +39,11 @@ class ArmyBattleTest {
         assertFalse(WarGame.fight(warrior,defender), "defender should have won");
         System.out.println("defender`s health point: "+defender.getHealth());
     }
+    @Test
+    void fightDefenderVsVampire(){
+        Defender defender=new Defender();
+        Vampire vampire=new Vampire();
+        assertTrue(WarGame.fight(defender, vampire), "defender should have won");
+        System.out.println("defender`s health point: "+defender.getHealth());
+    }
 }
