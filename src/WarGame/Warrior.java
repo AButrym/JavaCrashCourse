@@ -38,15 +38,23 @@ public class Warrior {
      * @param warrior to be attacked
      * @param attack strength of attack (warrior.health - attack)
      */
-    public void attack(Warrior warrior, int attack){
+    void attack(Warrior warrior, int attack){
         warrior.setHealth(warrior.health - attack);
     }
 
     /**
-     * Set health with health param
-     * @param health
+     * Warrior gets damage from another warrior
+     * @param warrior - attacking warrior
      */
-    public void setHealth(int health) {
+    void getDamage(Warrior warrior){
+        this.health -= warrior.getAttack();
+    }
+
+    /**
+     * Set health with health param
+     * @param health health of the warrior
+     */
+    void setHealth(int health) {
         this.health = health;
     }
 
