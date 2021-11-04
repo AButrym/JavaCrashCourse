@@ -10,7 +10,7 @@ import java.util.Arrays;
 class WarGameTest {
     @Test
     @DisplayName("Fight between chunk-bruce")
-    void fight2() {
+    void fight() {
         Warrior chunk = new Warrior();
         Warrior bruce = new Warrior();
         WarGame.fight(chunk, bruce);
@@ -18,7 +18,7 @@ class WarGameTest {
 
     @Test
     @DisplayName("Fight between chuck-bruce, dave-carl")
-    void fight() {
+    void fightOfTwo() {
         Warrior chuck = new Warrior();
         Warrior bruce = new Warrior();
         Warrior carl = new Knight();
@@ -38,5 +38,18 @@ class WarGameTest {
         Army army2 = new Army(new ArrayList<>(Arrays.asList(new Warrior(), new Knight(), new Warrior())));
         boolean result = Battle.fightArmy(army1, army2);
         Assertions.assertTrue(result, "Army1 should have won");
+    }
+
+    @Test
+    @DisplayName("Defender versus Warrior and Knight")
+    void fightDefender(){
+        Warrior defender = new Defender();
+        Warrior bruce = new Warrior();
+
+        Warrior defender_2 = new Defender();
+        Warrior carl = new Knight();
+
+        Assertions.assertTrue(WarGame.fight(defender, bruce));
+        Assertions.assertFalse(WarGame.fight(carl, defender_2));
     }
 }
