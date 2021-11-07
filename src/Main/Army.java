@@ -4,9 +4,6 @@ import java.util.LinkedList;
 public class Army {
     private final LinkedList<Warrior> army = new LinkedList<>();
 
-    public Army() {
-    }
-
     public void addUnits(Warrior unit) {
         army.add(unit);
     }
