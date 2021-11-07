@@ -13,8 +13,8 @@ class BattleTest {
         var carl = new Knight();
         var dave = new Warrior();
 
-        var result1 = Battle.unitsFight(chuck, bruce);
-        var result2 = Battle.unitsFight(dave, carl);
+        var result1 = Battle.UnitsFight(chuck, bruce);
+        var result2 = Battle.UnitsFight(dave, carl);
 
         assertTrue(result1, "Chuck should have won");
         assertFalse(result2, "Dave should have lost");
@@ -52,7 +52,7 @@ class BattleTest {
         var warrior = new Warrior();
         var defender = new Defender();
 
-        var result1 = Battle.unitsFight(warrior, defender);
+        var result1 = Battle.UnitsFight(warrior, defender);
 
         assertFalse(result1, "Defender should have won");
 
@@ -65,7 +65,7 @@ class BattleTest {
         var defender = new Defender();
         var vampire = new Vampire();
 
-        var result1 = Battle.unitsFight(defender, vampire);
+        var result1 = Battle.UnitsFight(defender, vampire);
 
         assertTrue(result1, "Defender should have won");
 
