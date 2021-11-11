@@ -16,12 +16,12 @@ public class Battle {
     }
 
     public static boolean ArmyFight(Army army1, Army army2) {
-    while (army1.isAlive() && army2.isAlive()) {
-        if(UnitsFight(army1.getUnit(), army2.getUnit()))
-            army2.removeUnit();
-        else
-            army1.removeUnit();
-    }
-    return army1.isAlive();
+        while (army1.isAlive() && army2.isAlive()) {
+            if(UnitsFight(army1.getUnit(), army2.getUnit()))
+                army2.removeUnit();
+            else
+                army1.removeUnit();
+        }
+        return army1.isAlive();
     }
 }

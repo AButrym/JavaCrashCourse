@@ -14,8 +14,6 @@ public class Defender extends Warrior {
 
     @Override
     public int GetDamage(int damage) {
-        int finalDamage = damage > _defense? damage - _defense: 0;
-        _health -= finalDamage;
-        return finalDamage;
+        return damage > _defense? super.GetDamage(damage - _defense) : 0;
     }
 }

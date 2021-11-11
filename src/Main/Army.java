@@ -6,6 +6,7 @@ public class Army {
 
     public void addUnits(Warrior unit) {
         army.add(unit);
+        if (army.size() > 1) army.get(army.size() - 2).SetUnitBehind(unit);
     }
 
     public boolean isAlive() {
@@ -17,6 +18,7 @@ public class Army {
     }
 
     public void removeUnit() {
-        army.removeFirst();
+        do army.removeFirst();
+        while (army.size() > 1 && !getUnit().isAlive());
     }
 }

@@ -61,7 +61,7 @@ class BattleTest {
     }
 
     @Test
-    void vampireFight(){
+    void vampireFight() {
         var defender = new Defender();
         var vampire = new Vampire();
 
@@ -71,5 +71,22 @@ class BattleTest {
 
         assertEquals(22, defender._health, "Defender should have health: 22");
         assertEquals(-1, vampire._health, "Vampire should have health: -1");
+    }
+
+    @Test
+    void lancerFight() {
+        Army army1 = new Army();
+        Army army2 = new Army();
+
+        army1.addUnits(new Lancer());
+
+        army2.addUnits(new Warrior());
+        army2.addUnits(new Knight());
+
+        var result1 = Battle.ArmyFight(army1, army2);
+
+        assertFalse(result1, "Second army should have won");
+
+        assertEquals(11, army2.getUnit()._health);
     }
 }
