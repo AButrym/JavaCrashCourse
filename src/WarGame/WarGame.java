@@ -13,14 +13,31 @@ public class WarGame {
     public static boolean fight(Warrior warrior1, Warrior warrior2){
         while(true)
         {
-            warrior2.getDamage(warrior1);
+            warrior1.attack(warrior2);
             if(!warrior2.isAlive()){
                 return true;
             }
-            warrior1.getDamage(warrior2);
+            warrior2.attack(warrior1);
             if (!warrior1.isAlive()){
                 return false;
             }
         }
+    }
+    /**
+     * Do fight between two armies
+     * @param army1 - army of warriors
+     * @param army2 - army of warriors
+     * @return - army that survived
+     */
+    public static boolean fightArmy(Army army1, Army army2) {
+        while(army1.getArmy().size() > 0 && army2.getArmy().size() > 0) {
+            boolean fighting = fight(army1.getArmy().get(0), army2.getArmy().get(0));
+            if (fighting) {
+                army2.getArmy().remove(0);
+            } else {
+                army1.getArmy().remove(0);
+            }
+        }
+        return army1.getArmy().size() > 0;
     }
 }

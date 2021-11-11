@@ -36,7 +36,7 @@ class WarGameTest {
     void fightArmy() {
         Army army1 = new Army(new ArrayList<>(Arrays.asList(new Warrior(), new Warrior(), new Warrior())));
         Army army2 = new Army(new ArrayList<>(Arrays.asList(new Warrior(), new Knight(), new Warrior())));
-        boolean result = Battle.fightArmy(army1, army2);
+        boolean result = WarGame.fightArmy(army1, army2);
         Assertions.assertTrue(result, "Army1 should have won");
     }
 
@@ -50,6 +50,27 @@ class WarGameTest {
         Warrior carl = new Knight();
 
         Assertions.assertTrue(WarGame.fight(defender, bruce));
-        Assertions.assertFalse(WarGame.fight(carl, defender_2));
+        Assertions.assertFalse(WarGame.fight(defender_2, carl));
+    }
+
+    @Test
+    @DisplayName("Vampire vs Warrior, Knight, Defender")
+    void fightVampire(){
+        Warrior vampire = new Vampire();
+        Warrior chuck = new Warrior();
+        Warrior vampire_2 = new Vampire();
+        Warrior knight = new Knight();
+        Warrior vampire_3 = new Vampire();
+        Warrior defender = new Defender();
+
+        Assertions.assertTrue(WarGame.fight(vampire, chuck));
+        Assertions.assertFalse(WarGame.fight(vampire_2, knight));
+        Assertions.assertFalse(WarGame.fight(vampire_3, defender));
+    }
+
+    @Test
+    @DisplayName("Army fight with lancer in it")
+    void fightArmyWithLancer(){
+
     }
 }
