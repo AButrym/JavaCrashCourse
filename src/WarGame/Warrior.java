@@ -35,10 +35,19 @@ public class Warrior {
 
     /**
      * Warrior gets damage from another warrior
-     * @param warrior - attacking warrior
+     * @param damage - damage strength
      */
-    void getDamage(Warrior warrior){
-        this.health -= warrior.getAttack();
+    int getDamage(int damage){
+        this.health -= damage;
+        return damage;
+    }
+
+    /**
+     * Attack warrior
+     * @param warrior - warrior that has been attacked
+     */
+    void attack(Warrior warrior){
+        warrior.getDamage(this.getAttack());
     }
 
     /**
@@ -47,6 +56,14 @@ public class Warrior {
      */
     void setHealth(int health) {
         this.health = health;
+    }
+
+    /**
+     * Heal the warrior
+     * @param health - heals points to add
+     */
+    void addHealth(int health){
+        this.health += health;
     }
 
     /**

@@ -5,6 +5,9 @@ import java.util.ArrayList;
 public class Army {
     private ArrayList<Warrior> army;
 
+    /**
+     * Constructor
+     */
     public Army()
     {
         this.army = new ArrayList<>();
