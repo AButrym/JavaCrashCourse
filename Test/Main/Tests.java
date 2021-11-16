@@ -59,7 +59,7 @@ class Tests {
     }
 
     @Test
-    void lancerFight() {
+    void lancerBattle() {
         Army army1 = new Army();
         Army army2 = new Army();
         army1.addWarriors(new Lancer());
