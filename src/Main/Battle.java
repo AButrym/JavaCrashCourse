@@ -1,7 +1,7 @@
 package Main;
 
 public class Battle {
-    public static boolean UnitsFight(Warrior w1, Warrior w2) {
+    public static boolean UnitsBattle(Warrior w1, Warrior w2) {
         Warrior attacker = w1;
         Warrior defender = w2;
 
@@ -15,9 +15,9 @@ public class Battle {
         return w1.isAlive();
     }
 
-    public static boolean ArmyFight(Army army1, Army army2) {
+    public static boolean ArmyBattle(Army army1, Army army2) {
     while (army1.isAlive() && army2.isAlive()) {
-        if(UnitsFight(army1.getWarrior(), army2.getWarrior()))
+        if(UnitsBattle(army1.getWarrior(), army2.getWarrior()))
             army2.removeWarrior();
         else
             army1.removeWarrior();

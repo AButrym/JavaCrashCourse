@@ -4,8 +4,11 @@ import java.util.LinkedList;
 public class Army {
     private final LinkedList<Warrior> army = new LinkedList<>();
 
-    public void addWarriors(Warrior warrior) {
-        army.add(warrior);
+    public void addWarriors(Warrior w) {
+        army.add(w);
+        if (army.size() > 1) {
+            army.get(army.size() - 2).BackFromMeSet(w);
+        }
     }
 
     public Warrior getWarrior() {

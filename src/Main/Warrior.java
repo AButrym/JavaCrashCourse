@@ -3,6 +3,7 @@ package Main;
 public class Warrior {
     protected int _attack;
     protected int _health;
+    protected Warrior _backFromMe = null;
 
     public Warrior() {
         this(50, 5);
@@ -11,6 +12,14 @@ public class Warrior {
     protected Warrior(int health, int attack) {
         _health = health;
         _attack = attack;
+    }
+
+    public void BackFromMeSet(Warrior w) {
+        _backFromMe = w;
+    }
+
+    public Warrior BackFromMeGet() {
+        return _backFromMe;
     }
 
     public int GetDamaged(int damage) {
@@ -22,7 +31,7 @@ public class Warrior {
         return _health > 0;
     }
 
-    public void Attack(Warrior enemy) {
-        enemy.GetDamaged(_attack);
+    public void Attack(Warrior w) {
+        w.GetDamaged(_attack);
     }
 }
