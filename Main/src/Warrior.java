@@ -1,6 +1,7 @@
 public class Warrior {
     protected int health;
     protected int attack;
+    protected Warrior nextUnit;
 
     public Warrior() {
         this(50, 5);
@@ -11,6 +12,14 @@ public class Warrior {
         this.attack = attack;
     }
 
+    public void setNextUnit(Warrior nextUnit) {
+        this.nextUnit = nextUnit;
+    }
+
+    public Warrior getNextUnit() {
+        return nextUnit;
+    }
+
     public boolean isAlive() {
         return health > 0;
     }
@@ -19,22 +28,13 @@ public class Warrior {
         return health;
     }
 
-    public int getAttack() {
-        return attack;
+    public int getDamage(int damage) {
+        if (damage < 0) return 0;
+        health -= damage;
+        return damage;
     }
 
-    public void attack(Defender warriorDefender) {
-        if (this.attack > warriorDefender.defence)
-        {
-            warriorDefender.health = warriorDefender.health - (this.attack - warriorDefender.defence);
-            if (!warriorDefender.isAlive())
-                warriorDefender.health = 0;
-        }
-    }
-
-    public void attack(Warrior warriorDefender) {
-        warriorDefender.health = warriorDefender.health - this.attack;
-        if (!warriorDefender.isAlive())
-            warriorDefender.health = 0;
+    public int attack(Warrior warriorDefender) {
+        return warriorDefender.getDamage(attack);
     }
 }

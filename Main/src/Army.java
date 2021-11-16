@@ -15,19 +15,22 @@ public class Army {
         int i;
         for (i = 0; i < count; i++) {
             armyList.add(chooseClassOfWarrior(classOfWarriors));
+            if (this.armyList.size() > 1)
+                this.armyList.get(this.armyList.size() - 2).setNextUnit(armyList.get(this.armyList.size() - 1));
         }
-        System.out.println("Успешно добавлено " + i + " " + chooseClassOfWarrior(classOfWarriors).getClass().getTypeName()+"s");
+        System.out.println("Успешно добавлено " + i + " " + chooseClassOfWarrior(classOfWarriors).getClass().getTypeName() + "s");
         System.out.println("Общее количетсво воинов в армии: " + armyList.size());
         return armyList;
     }
 
     public Warrior chooseClassOfWarrior(int classOfWarriors) {
-        switch (classOfWarriors) {
-            case 1:
-                return new Warrior();
-            case 2:
-                return new Knight();
-        }
-        return null;
+        return switch (classOfWarriors) {
+            case 1 -> new Warrior();
+            case 2 -> new Knight();
+            case 3 -> new Defender();
+            case 4 -> new Vampire();
+            case 5 -> new Lancer();
+            default -> null;
+        };
     }
 }

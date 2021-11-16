@@ -6,12 +6,7 @@ public class Defender extends Warrior{
         this.defence = 2;
     }
 
-    public Defender(int health, int attack, int defence) {
-        super(health, attack);
-        this.defence = defence;
-    }
-
-    public int getDefence() {
-        return defence;
+    public int getDamage(int damage){
+        return damage > defence ? super.getDamage(damage - defence) : 0;
     }
 }

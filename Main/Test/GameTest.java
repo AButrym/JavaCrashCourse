@@ -71,4 +71,37 @@ class GameTest {
         assertTrue(tod.isAlive());
         assertEquals(60, tod.getHealth());
     }
+
+
+    @Test
+    void fightVampire() {
+        var jim = new Knight();
+        var bruce = new Defender();
+        var chuck = new Vampire();
+        var dave = new Vampire();
+
+        var result1 = Game.fight(bruce, chuck);
+        var result2 = Game.fight(jim, dave);
+
+        assertTrue(result1, "Bruce should have won");
+        assertTrue(result2, "Jim should have lost");
+
+        assertFalse(chuck.isAlive());
+        assertTrue(bruce.isAlive());
+        assertTrue(jim.isAlive());
+        assertFalse(dave.isAlive());
+    }
+
+    @Test
+    void fightLancer() {
+        Army army1 = new Army();
+        Army army2 = new Army();
+
+        army1.addUnits(1, 5);
+        army2.addUnits(1,1);
+        army2.addUnits(1,2);
+
+        var result1 = Battle.fight(army1.getArmyList(), army2.getArmyList());
+        assertFalse(result1, "Second army should have won");
+    }
 }
