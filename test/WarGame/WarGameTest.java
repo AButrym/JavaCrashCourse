@@ -50,7 +50,7 @@ class WarGameTest {
         Warrior carl = new Knight();
 
         Assertions.assertTrue(WarGame.fight(defender, bruce));
-        Assertions.assertFalse(WarGame.fight(defender_2, carl));
+        Assertions.assertTrue(WarGame.fight(defender_2, carl));
     }
 
     @Test
@@ -71,6 +71,34 @@ class WarGameTest {
     @Test
     @DisplayName("Army fight with lancer in it")
     void fightArmyWithLancer(){
+        Army army1 = new Army();
+        Army army2 = new Army();
 
+        army1.addUnits(new Lancer());
+        army2.addUnits(new Warrior());
+        army2.addUnits(new Knight());
+
+        var result1 = WarGame.fightArmy(army1, army2);
+        Assertions.assertFalse(result1, "Second army should have won");
+    }
+
+    @Test
+    @DisplayName("Healer test")
+    void figthWithHealer() {
+        Army army1 = new Army();
+        Army army2 = new Army();
+
+        army1.addUnits(new Lancer());
+
+        army2.addUnits(new Warrior());
+        army2.addUnits(new Healer());
+
+        var result1 = WarGame.fightArmy(army1, army2);
+
+        Assertions.assertFalse(result1, "Second army should have won");
+        Assertions.assertFalse(army1.isAlive());
+        Assertions.assertTrue(army2.isAlive());
+        Assertions.assertEquals(army2.get(0).getHealth(), 10);
+        Assertions.assertEquals(army2.get(1).getHealth(), 30);
     }
 }

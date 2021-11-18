@@ -30,14 +30,11 @@ public class WarGame {
      * @return - army that survived
      */
     public static boolean fightArmy(Army army1, Army army2) {
-        while(army1.getArmy().size() > 0 && army2.getArmy().size() > 0) {
-            boolean fighting = fight(army1.getArmy().get(0), army2.getArmy().get(0));
-            if (fighting) {
-                army2.getArmy().remove(0);
-            } else {
-                army1.getArmy().remove(0);
-            }
+        while (army1.isAlive() && army2.isAlive()) {
+            boolean result =  fight(army1.get(0), army2.get(0));
+            if (result) army2.tryDeleteUnits(0);
+            else army1.tryDeleteUnits(0);
         }
-        return army1.getArmy().size() > 0;
+        return army1.isAlive();
     }
 }

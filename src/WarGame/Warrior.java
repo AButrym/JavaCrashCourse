@@ -3,16 +3,20 @@ package WarGame;
 /**
  * Warrior class
  */
-public class Warrior {
+public class Warrior implements IAttack {
     protected int health;
     protected int attack;
-
+    protected final int maxHealth;
+    private Warrior nextUnit;
+    protected Warrior prevUnit;
+    protected HealEvent heal = new HealEvent();
     /**
      * Default ctor
      */
     public Warrior(){
         this.health = 50;
         this.attack = 5;
+        this.maxHealth = health;
     }
 
     /**
@@ -23,6 +27,7 @@ public class Warrior {
     protected  Warrior(int health, int attack) {
         this.health = health;
         this.attack = attack;
+        this.maxHealth = health;
     }
 
     /**
@@ -30,6 +35,10 @@ public class Warrior {
      * @return true or false
      */
     public boolean isAlive() {
+        if (nextUnit != null && !nextUnit.isAlive()){
+            nextUnit = nextUnit.nextUnit;
+            nextUnit.prevUnit = this;
+        }
         return health > 0;
     }
 
@@ -37,7 +46,7 @@ public class Warrior {
      * Warrior gets damage from another warrior
      * @param damage - damage strength
      */
-    int getDamage(int damage){
+    public int getDamage(int damage){
         this.health -= damage;
         return damage;
     }
@@ -46,16 +55,42 @@ public class Warrior {
      * Attack warrior
      * @param warrior - warrior that has been attacked
      */
-    void attack(Warrior warrior){
-        warrior.getDamage(this.getAttack());
+    public int attack(Warrior warrior){
+        heal.onHeal(this);
+        return warrior.getDamage(this.getAttack());
     }
 
     /**
-     * Set health with health param
-     * @param health health of the warrior
+     *
+     * @param unit
      */
-    void setHealth(int health) {
-        this.health = health;
+    public void setNextUnit(Warrior unit){
+        this.nextUnit = unit;
+    }
+
+    /**
+     * Return the next unit after this
+     * @return - next unit
+     */
+    public Warrior getNextUnit(){
+        return this.nextUnit;
+    }
+
+    /**
+     * Set the previous unit
+     * @param unit
+     */
+    public void setPrevUnit(Warrior unit){
+        this.prevUnit = unit;
+    }
+
+
+    /**
+     * Return the previous unit after this
+     * @return - prev unit
+     */
+    public Warrior getPrevUnit(){
+        return this.prevUnit;
     }
 
     /**
@@ -67,16 +102,11 @@ public class Warrior {
     }
 
     /**
-     * Getter of health
-     */
-    public int getHealth() {
-        return health;
-    }
-
-    /**
      * Getter of attack
      */
     public int getAttack() {
         return attack;
     }
+
+    public int getHealth() {return health;}
 }

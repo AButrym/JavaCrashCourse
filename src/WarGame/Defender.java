@@ -16,9 +16,7 @@ public class Defender extends Warrior{
      */
     @Override
     public int getDamage(int damage){
-        damage -= this.defence;
-        this.health -= damage;
-        return damage;
+        return damage > this.defence ? super.getDamage(this.defence - damage) : 0;
     }
 
 }

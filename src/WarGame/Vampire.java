@@ -2,7 +2,6 @@ package WarGame;
 
 public class Vampire extends Warrior {
     private final float vampirism;
-    private static final int MAX_HEALTH = 40;
     /**
      * Constructor
      */
@@ -14,9 +13,10 @@ public class Vampire extends Warrior {
      * Override attack from Warrior
      */
     @Override
-    void attack(Warrior warrior){
+    public int attack(Warrior warrior){
         int health = warrior.getDamage(this.getAttack());
-        if (this.health + (int)(health * vampirism / 100) <= MAX_HEALTH)
+        if (this.health + (int)(health * vampirism / 100) <= this.maxHealth)
             this.addHealth((int)(health * vampirism / 100));
+        return health;
     }
 }

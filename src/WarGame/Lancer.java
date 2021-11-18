@@ -10,9 +10,10 @@ public class Lancer extends Warrior {
 
     /**
      *
+     * @return
      */
     @Override
-    void attack(Warrior warrior){
-
+    public int attack(Warrior defender){
+        return defender.getNextUnit() != null ? defender.getNextUnit().getDamage(defender.getDamage(attack) / 2) : defender.getDamage(attack);
     }
 }

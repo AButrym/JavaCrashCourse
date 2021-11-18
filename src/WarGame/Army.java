@@ -30,34 +30,74 @@ public class Army {
     }
 
     /**
-     * Add to the end of army the warrior
-     * @param warrior - object
+     * Add unit to army
+     * @param warrior unit
      */
-    public void addToArmy(Warrior warrior) {
-        this.army.add(warrior);
+    public void addUnits(Warrior warrior){
+        if (army.size() > 1)
+        {
+            int preLast = army.size() - 2;
+            army.get(preLast).setNextUnit(warrior);
+            army.get(army.size() - 1).setPrevUnit(army.get(preLast));
+        }
     }
 
     /**
-     * Remove from the army by index
-     * @param index - int
+     * Get unit by index
+     * @param index index of unit
+     * @return the unit
      */
-    public void removeFromArmy(int index) {
-        this.army.remove(index);
+    public Warrior get(int index){
+        try {
+            return army.get(index);
+        }
+        catch (IndexOutOfBoundsException ex) {
+            return null;
+        }
     }
 
     /**
-     * Remove from the army by Object
-     * @param warrior - object
+     * Check if Alive
+     * @return
      */
-    public void removeFromArmy(Warrior warrior) {
-        this.army.remove(warrior);
+    public boolean isAlive(){
+        for (int v = 0; v < army.size(); v++){
+            if (!army.get(v).isAlive())
+                army.remove(v);
+        }
+        return army.size() > 0;
     }
 
     /**
-     * Set army by parameter
-     * @param army - arraylist
+     * Delete unit by index
+     * @param index index of unit
+     * @return success of not
      */
-    void setArmy(ArrayList<Warrior> army) {
-        this.army = army;
+    public boolean tryDeleteUnits(int index)
+    {
+        try {
+            army.remove(index);
+            return true;
+        }
+        catch (IndexOutOfBoundsException ex) {
+            return false;
+        }
+    }
+
+    /**
+     * Delete "count" amount of units
+     * @param start index of start
+     * @param count amount of units
+     * @return
+     */
+    public boolean tryDeleteUnits(int start, int count)
+    {
+        try {
+            for (int i = 0; i < count; i++) army.remove(start);
+            return true;
+        }
+        catch (IndexOutOfBoundsException ex) {
+            return false;
+        }
     }
 }
