@@ -1,17 +1,36 @@
 package com.crashcourse.ponomarenko.game;
 
 public class Battle {
-    public static boolean fight(Warrior w1, Warrior w2) {
-        while (true) {
-            w1.getDamage(w2);
-            if (!w2.isAlive()) {
+    public static boolean fight(Warrior attacker, Warrior defender) {
+        int attackerMaxHp = attacker.health;
+        int defenderMaxHp = defender.health;
+
+        while (attacker.isAlive() && defender.isAlive()) {
+            System.out.println("w2: " + defender.getHealth());
+            defender.health = defender.getHealth() - (attacker.getAttack() - defender.getDefense());
+            if (attacker.getVampirism() > 0) {
+                attacker.health += (attacker.getAttack() - defender.getDefense()) * attacker.getVampirism() / 100;
+                //vamp can't have more health than before
+                if (attacker.getHealth() > attackerMaxHp) {
+                    attacker.health = attackerMaxHp;
+                }
+            }
+
+            System.out.println("w1: " + attacker.getHealth());
+            if (defender.isAlive()) {
+                attacker.health = attacker.getHealth() - (defender.getAttack() - attacker.getDefense());
+                if (defender.getVampirism() > 0) {
+                    defender.health += (defender.getAttack() - attacker.getDefense()) * defender.getVampirism() / 100;
+                    //vamp can't have more health than before
+                    if (defender.getHealth() > defenderMaxHp) {
+                        defender.health = defenderMaxHp;
+                    }
+                }
+            } else {
                 return true;
             }
-            w2.getDamage(w1);
-            if (!w1.isAlive()) {
-                return false;
-            }
         }
+        return false;
     }
 
     public static boolean fightArmy(Army army1, Army army2) {
