@@ -1,8 +1,8 @@
 package com.crashcourse.ponomarenko.game;
 
 public class Warrior {
-    protected int health;
-    protected int attack;
+    private int health;
+    private int attack;
 
     public Warrior() {
         this(50, 5);
@@ -17,11 +17,19 @@ public class Warrior {
         return health > 0;
     }
 
-    public double getHealth() {
-        return health;
+    void getDamage(Warrior warrior){
+        this.health -= warrior.getAttack();
     }
 
-    public int getAttack() {
+    private int getAttack() {
         return attack;
+    }
+
+    void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getHealth() {
+        return health;
     }
 }
