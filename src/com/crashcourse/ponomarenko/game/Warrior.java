@@ -3,14 +3,16 @@ package com.crashcourse.ponomarenko.game;
 public class Warrior {
     protected int health;
     protected int attack;
+    protected int defence;
 
     public Warrior() {
-        this(50, 5);
+        this(50, 5, 0);
     }
 
-    protected Warrior(int health, int attack) {
+    protected Warrior(int health, int attack, int defence) {
         this.health = health;
         this.attack = attack;
+        this.defence = defence;
     }
 
     public boolean isAlive() {
@@ -18,18 +20,18 @@ public class Warrior {
     }
 
     protected void getDamage(Warrior warrior){
-        this.health -= warrior.getAttack();
+        this.health = warrior.getHealth() - (warrior.getAttack() + warrior.getDefence());
     }
 
     protected int getAttack() {
         return attack;
     }
 
-    void setHealth(int health) {
-        this.health = health;
+    protected int getHealth() {
+        return health;
     }
 
-    public int getHealth() {
-        return health;
+    protected int getDefence() {
+        return defence;
     }
 }
