@@ -4,24 +4,23 @@ public class Warrior {
     protected int health;
     protected int attack;
     protected int defence;
+    protected int vampirism;
 
     public Warrior() {
-        this(50, 5, 0);
+        this(50, 5, 0, 0);
     }
 
-    protected Warrior(int health, int attack, int defence) {
+    protected Warrior(int health, int attack, int defence, int vampirism) {
         this.health = health;
         this.attack = attack;
         this.defence = defence;
+        this.vampirism = vampirism;
     }
 
     public boolean isAlive() {
         return health > 0;
     }
 
-    protected void getDamage(Warrior warrior){
-        this.health = warrior.getHealth() - (warrior.getAttack() + warrior.getDefence());
-    }
 
     protected int getAttack() {
         return attack;
@@ -31,7 +30,11 @@ public class Warrior {
         return health;
     }
 
-    protected int getDefence() {
+    protected int getDefense() {
         return defence;
+    }
+
+    public int getVampirism() {
+        return vampirism;
     }
 }
