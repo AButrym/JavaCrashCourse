@@ -3,38 +3,46 @@ package com.crashcourse.ponomarenko.game;
 public class Warrior {
     protected int health;
     protected int attack;
-    protected int defence;
-    protected int vampirism;
+    protected Warrior backUnit = null;
 
     public Warrior() {
-        this(50, 5, 0, 0);
+        this(50, 5);
     }
 
-    protected Warrior(int health, int attack, int defence, int vampirism) {
+    protected Warrior(int health, int attack) {
         this.health = health;
         this.attack = attack;
-        this.defence = defence;
-        this.vampirism = vampirism;
     }
 
     public boolean isAlive() {
         return health > 0;
     }
 
-
-    protected int getAttack() {
+    public int getAttack() {
         return attack;
     }
 
-    protected int getHealth() {
+    public int getHealth() {
         return health;
     }
 
-    protected int getDefense() {
-        return defence;
+    public int attacking(Warrior defender) {
+        return defender.takingDamage(attack);
     }
 
-    public int getVampirism() {
-        return vampirism;
+    public int takingDamage(int damage) {
+        if (damage < 0)
+            return 0;
+        else
+            health -= damage;
+            return damage;
+    }
+
+    public void setBackUnit(Warrior unit) {
+        this.backUnit = unit;
+    }
+
+    public Warrior getBackUnit() {
+        return backUnit;
     }
 }

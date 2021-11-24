@@ -11,12 +11,12 @@ class ArmyBattleTest {
     @DisplayName("1. Army vs another army")
     void fightArmy() {
         Army france = new Army();
-        france.addUnitsKnight(6);
-        france.addUnitsWarrior(5);
+        france.addUnits(new Warrior(), 6);
+        france.addUnits(new Knight(), 5);
 
         Army germany = new Army();
-        germany.addUnitsKnight(3);
-        germany.addUnitsWarrior(5);
+        germany.addUnits(new Warrior(), 3);
+        germany.addUnits(new Knight(), 5);
 
 
         boolean result = Battle.fightArmy(france, germany);
